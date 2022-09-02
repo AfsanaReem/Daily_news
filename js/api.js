@@ -40,7 +40,7 @@ const displayCategoryNews = newsArray => {
                         <div class="col-md-10">
                             <div class="card-body">
                                 <h5 class="card-title">${news.title}</h5>
-                                <p class="card-text">${news.details}</p>
+                                <p class="card-text">${news.details.slice(0, 350)}...</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="d-flex">
                                         <img style="width: 50px;" class="rounded-circle" src="${news.author.img}" alt="">
