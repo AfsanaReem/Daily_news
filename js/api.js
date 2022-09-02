@@ -59,7 +59,7 @@ const displayCategoryNews = newsArray => {
                                         <p>${news.author.name ? news.author.name : 'No author'}<br>${news.author.published_date ? news.author.published_date : 'No date found'}</p>
                                     </div>
                                     <p>Total View: ${news.total_view ? news.total_view : 'No views'}</p>
-                                    <button type="button" class="btn btn-outline-info">Details</button>
+                                    <button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#exampleModal">Details</button>
                                 </div>
                             </div>
                         </div>
