@@ -13,12 +13,49 @@ const displayCategory = categories => {
         categoryUl.classList.add('flex-fill');
         categoryUl.innerHTML = `
             <li class="nav-item">
-                <a class="nav-link text-muted" href="#">${category.category_name}</a>
+                <a class="nav-link text-muted" onclick="loadCategoryNews('${category.category_id}')" href="#">${category.category_name}</a>
             </li>
         `
         categoryContainer.appendChild(categoryUl);
-        console.log(category.category_name)
     });
-    // categoryContainer.document.
+}
+const loadCategoryNews = async (id) => {
+    const url = `https://openapi.programming-hero.com/api/news/category/${id}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    displayCategoryNews(data.data);
+    console.log(data.data);
+}
+const displayCategoryNews = newsArray => {
+    const newsContainer = document.getElementById('newsContainer');
+    newsContainer.innerHTML = '';
+    newsArray.forEach(news => {
+        const newsDiv = document.createElement('div');
+        newsDiv.innerHTML = `
+        <div class="card mb-3">
+                    <div class="row g-0">
+                        <div class="col-md-2">
+                            <img src="${news.thumbnail_url}" class="img-fluid rounded-start" alt="...">
+                        </div>
+                        <div class="col-md-10">
+                            <div class="card-body">
+                                <h5 class="card-title">${news.title}</h5>
+                                <p class="card-text">${news.details}</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="d-flex">
+                                        <img style="width: 50px;" class="rounded-circle" src="${news.author.img}" alt="">
+                                        <p>${news.author.name}<br>${news.author.published_date}</p>
+                                    </div>
+                                    <p>Total View: ${news.total_view}</p>
+                                    <button type="button" class="btn btn-outline-info">Details</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        `;
+        newsContainer.appendChild(newsDiv);
+    })
+
 }
 loadCategory();
