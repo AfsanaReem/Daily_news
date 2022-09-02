@@ -28,11 +28,10 @@ const loadCategoryNews = async (id) => {
 }
 const displayCategoryNews = newsArray => {
     const newsContainer = document.getElementById('newsContainer');
-    newsContainer.innerHTML = '';
+    newsContainer.innerHTML = `<p> ${newsArray.length} items found </p>`;
     newsArray.forEach(news => {
         const newsDiv = document.createElement('div');
         newsDiv.innerHTML = `
-        <p> ${newsArray.length} items found for category ${news.category_id}</p>
         <div class="card mb-3">
                     <div class="row g-0">
                         <div class="col-md-2">
