@@ -32,6 +32,7 @@ const displayCategoryNews = newsArray => {
     newsArray.forEach(news => {
         const newsDiv = document.createElement('div');
         newsDiv.innerHTML = `
+        <p> ${newsArray.length} items found for category ${news.category_id}</p>
         <div class="card mb-3">
                     <div class="row g-0">
                         <div class="col-md-2">
@@ -44,9 +45,9 @@ const displayCategoryNews = newsArray => {
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="d-flex">
                                         <img style="width: 50px;" class="rounded-circle" src="${news.author.img}" alt="">
-                                        <p>${news.author.name}<br>${news.author.published_date}</p>
+                                        <p>${news.author.name ? news.author.name : 'No author'}<br>${news.author.published_date ? news.author.published_date : 'No date found'}</p>
                                     </div>
-                                    <p>Total View: ${news.total_view}</p>
+                                    <p>Total View: ${news.total_view ? news.total_view : 'No views'}</p>
                                     <button type="button" class="btn btn-outline-info">Details</button>
                                 </div>
                             </div>
