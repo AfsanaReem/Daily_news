@@ -39,6 +39,9 @@ const loadCategoryNews = async (id) => {
 const displayCategoryNews = newsArray => {
     const newsContainer = document.getElementById('newsContainer');
     newsContainer.innerHTML = `<p> ${newsArray.length} items found </p>`;
+    newsArray.sort((a, b) => {
+        return b.total_view - a.total_view;
+    });
     newsArray.forEach(news => {
         const newsDiv = document.createElement('div');
         newsDiv.innerHTML = `
