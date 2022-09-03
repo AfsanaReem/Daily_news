@@ -26,12 +26,12 @@ const displayCategory = categories => {
     });
 }
 const loadCategoryNews = async (id) => {
+    spinner(true);
     const url = `https://openapi.programming-hero.com/api/news/category/${id}`;
     try {
         const res = await fetch(url);
         const data = await res.json();
         displayCategoryNews(data.data);
-        console.log(data.data);
     }
     catch (error) {
         console.log(error);
@@ -59,7 +59,7 @@ const displayCategoryNews = newsArray => {
                                         <p>${news.author.name ? news.author.name : 'No author'}<br>${news.author.published_date ? news.author.published_date : 'No date found'}</p>
                                     </div>
                                     <p>Total View: ${news.total_view ? news.total_view : 'No views'}</p>
-                                    <button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#exampleModal">Details</button>
+                                    <button onclick="modalBody('${news._id}')" type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#exampleModal">Details</button>
                                 </div>
                             </div>
                         </div>
@@ -68,6 +68,32 @@ const displayCategoryNews = newsArray => {
         `;
         newsContainer.appendChild(newsDiv);
     })
+    spinner(false);
+}
+const modalBody = async (id) => {
+    const url = `https://openapi.programming-hero.com/api/news/${id}`;
+    try {
+        const res = await fetch(url);
+        const data = await res.json();
+        displayModalBody(data.data[0]);
+    }
+    catch (error) {
+        console.log(error);
+    }
 
 }
-loadCategory();
+const displayModalBody = categories => {
+    const modalBodyText = document.getElementById('modalBody');
+    modalBodyText.innerText = `${categories.details}`
+}
+const spinner = isLoding => {
+    const loadSection = document.getElementById('spinner');
+    if (isLoding) {
+        loadSection.classList.remove('d-none');
+    }
+    else {
+        loadSection.classList.add('d-none');
+    }
+}
+
+loadCategory()
