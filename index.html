@@ -38,7 +38,11 @@
     </header>
     <main>
         <!-- category starts  -->
-        <section id="categoryContainer" class="container d-flex flex-row ">
+        <section class="container">
+            <nav class="navbar navbar-expand-lg bg-light">
+                <div id="categoryContainer" class="container">
+                </div>
+            </nav>
         </section>
         <!-- category ends  -->
         <!-- card news starts  -->
@@ -64,7 +68,8 @@
                 </div>
             </div>
         </section>
-        <section id="spinner" class="container d-none">
+        <section id="spinner"
+            class="container d-none position-absolute top-50 start-50 translate-middle-x text-white bg-dark p-5">
             <div class="d-flex align-items-center">
                 <strong>Loading...</strong>
                 <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>

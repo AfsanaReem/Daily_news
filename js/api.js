@@ -14,9 +14,7 @@ const displayCategory = categories => {
     const categoryContainer = document.getElementById('categoryContainer');
     categories.forEach(category => {
         const categoryUl = document.createElement('ul')
-        categoryUl.classList.add('nav-tabs');
-        categoryUl.classList.add('nav');
-        categoryUl.classList.add('flex-fill');
+        categoryUl.classList.add('nav-tabs', 'nav');
         categoryUl.innerHTML = `
             <li class="nav-item">
                 <a class="nav-link text-muted" onclick="loadCategoryNews('${category.category_id}')" href="#">${category.category_name}</a>
@@ -46,13 +44,13 @@ const displayCategoryNews = newsArray => {
         newsDiv.innerHTML = `
         <div class="card mb-3">
                     <div class="row g-0">
-                        <div class="col-md-2">
+                        <div class="col-md-2 col-sm-2">
                             <img src="${news.thumbnail_url}" class="img-fluid rounded-start" alt="...">
                         </div>
-                        <div class="col-md-10">
+                        <div class="col-md-10 col-sm-10">
                             <div class="card-body">
                                 <h5 class="card-title">${news.title}</h5>
-                                <p class="card-text">${news.details.slice(0, 350)}...</p>
+                                <p class="card-text">${news.details.slice(0, 350)}..</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="d-flex">
                                         <img style="width: 50px;" class="rounded-circle" src="${news.author.img}" alt="">
